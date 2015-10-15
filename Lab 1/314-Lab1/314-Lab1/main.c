@@ -22,18 +22,18 @@
 #define MAX_DECIMAL 2147483647 //for int
 
 // Implement the rest of the program
-int to_binary_conversion(int, char*, char*);
-bool input_check(i)
+int to_base10(int, char*, char*);
+void from_base10(int, char*, char*);
+//bool input_check(i)
 int main(){
     
     char in_number[MAX_NUM+1];
     int in_base = 0;
-    int out_base = 10;
-//    char out_number[MAX_NUM+1];
+    int out_base = 0;
     char possible_characters[16] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
     
-    printf("Please enter the desired starting base: ");
-    scanf("%d", &in_base);
+//    printf("Please enter the desired starting base: ");
+//    scanf("%d", &in_base);
     printf("Please enter the desired ending base: ");
     scanf("%d", &out_base);
     printf("Please enter the desired number to be converted: ");
@@ -47,25 +47,73 @@ int main(){
 //    total = pow(in_base, 0);
 //    printf("%d", total);
 //    int q = 0;
-
-    printf("%d",to_binary_conversion(in_base, in_number, possible_characters));
+//    if (out_base == 10) {
+//      printf("Converted value: %d",to_base10(in_base, in_number, possible_characters));
+//    } else {
+        from_base10(out_base, in_number, possible_characters);
+//    }
 }
 
-
-int to_binary_conversion(int in_base, char* in_number, char* possible_characters) {
+int to_base10(int in_base, char* in_number, char* possible_characters) {
     int total = 0;
-    int p = (strlen(in_number)-1);
+    long p = (strlen(in_number)-1);
     
     for (int q = 0; q < strlen(in_number); q++) {
         for (int i = 0; i < in_base; i++) {
             if (in_number[q] == possible_characters[i]) {
                 total += i*(pow(in_base, p));
                 p--;
+            } else {
+                printf("An invalid character has been entered.");
             }
         }
     }
     return total;
 }
+
+void from_base10(int out_base, char* in_number, char* possible_characters) {
+    char out_number[17] = {'0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'};
+    int n = atoi(in_number);
+    int remainder = 0;
+    long i = strlen(out_number);
+    int m = 0;
+    
+    out_number[i] = '\0';
+  
+//    for (n; n != 0; n = n/out_base) {
+//        remainder = n%out_base;
+//        out_number[i] = possible_characters[remainder];
+//        i--;
+//    }
+    
+    do {
+        remainder = n%out_base;
+        n = n/out_base;
+        out_number[i--] = possible_characters[remainder];
+//        i--;
+//        printf("%d", remainder);
+    } while(n != 0);
+    
+    while (out_number[m] == '0') {
+        m++;
+    }
+    while (m <= 17) {
+        printf("%c", out_number[m]);
+        m++;
+    }
+
+}
+
+    
+//    function to change your decimal -> binary
+    // void DecimalToBinary(int decimal, char * (binaryString+14)) --- binaryString+14 will point to just before null '\0'. Further iteration will subtract (--binaryString) 1 place. Ultimately placing binary from right to left
+    //      if decimal == 0 return;
+    //      quotient = decimal/2
+    //      remainder = decimal%2
+    //      *binary = remainder
+    //      DecimalToBinary(quotient, --binaryString)
+
+
 
 ////////////////////
 /////////// TODO: Function to check for invalid input
