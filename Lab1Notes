@@ -1,0 +1,84 @@
+Node p = new Node();
+p.val = 'a';
+
+Node q = new Node();
+q.val = 'b';
+p.next = q;
+
+Node m new Node('c');
+q.next = m
+
+(Above: 3 linked data structures)
+
+Stack:
+Node top;
+
+push string into stack and into queue. string coming out of stack should match string as it is dequeued from queue
+
+Implement own stack and own queue (don't use Java's)
+
+
+EX]
+TEACHER
+
+	Format Note: [Letter|Pointer]
+T -- Create node [T|Null], push to stack, enqueue to queue
+E -- Create node [E|T], push to stack, enqueue to queue
+A -- Create node [A|E], push to stack, enqueue to queue
+.
+.
+.
+R -- Create node [R|E], push to stack, enqueue to queue
+
+stack.pop() from stack and compare to queue.dequeue()
+
+(BETTER TO MAKE 4 FILES FOR THIS PROGRAM Stack.java, Queue.java, Node.java, Palindrome.java -- Main)
+
+Stack:
+	pop -- returns whatever you take out
+	push -- does not return
+	isEmpty
+	Node top
+
+	Push:
+	n.next = top
+	top = n
+
+	Pop:
+	Node n = top
+	top = top.next;
+	return n
+
+Queue:
+	enqueue
+	dequeue
+	Node front -- if null, queue is empty
+	Node rear
+
+	enqueue(Node n) {
+	(for first item)
+	front = n;
+	rear = n;
+
+	(for next items)
+	rear.next = n;
+	rear = n;
+	}
+
+	dequeue works similar to stack pop:
+	Node m = front;
+	front = front.next;
+
+
+Node:
+public class Node {
+	char val;
+	Node next;
+	(getters and setters, don't type them out)
+}
+
+
+
+
+IGNORE WHITE SPACE -- mada m is still a palindrome
+Don't let any function in java have more than 9 lines of code (if possible)
