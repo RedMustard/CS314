@@ -68,7 +68,7 @@ void from_base10(int out_base, char* in_number, char* possible_characters) {
     char out_number[17] = {'0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'};
     int n = atoi(in_number); // Convert in_number to int for calculation
     int remainder = 0;
-    long i = strlen(out_number); // Start the counter at the end of  out_number
+    long i = 17; // Start the counter at the end of  out_number
     int m = 0;
     
     out_number[i] = '\0'; // Make sure the char array has a terminator at the end
@@ -81,11 +81,12 @@ void from_base10(int out_base, char* in_number, char* possible_characters) {
     } while(n != 0);
     
     // Disregard beginning 'empty' ('0') characters when printing converted number
+    printf("Converted value: ");
     while (out_number[m] == '0') {
         m++;
     }
     while (m <= 17) {
-        printf("Converted value: %c", out_number[m]);
+        printf("%c", out_number[m]);
         m++;
     }
 }
