@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>6CF4EB68-FB67-4F25-9794-E1A93EE5931B</string>
+	<string>C1208199-EDEA-4520-844C-2772720E3E80</string>
 	<key>IDESourceControlProjectName</key>
-	<string>314-Lab1</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>15463496409B96FBEEDE2F46B3164A08284CC871</key>
 		<string>https://github.com/RedMustard/CS314.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Lab 1/314-Lab1/314-Lab1.xcodeproj</string>
+	<string>Lab 1/314-Lab1b/314-Lab1b.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>15463496409B96FBEEDE2F46B3164A08284CC871</key>

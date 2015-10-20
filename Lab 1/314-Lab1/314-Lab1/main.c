@@ -1,6 +1,6 @@
 //  CIS 314 Fall 2015 Lab 1
 //
-//  This program converts a x base to y base converter [less than 16].
+//  This program converts a x base to y base converter [Bases 2-16].
 //
 //  Created by Travis Barnes on 10/13/15.
 //  Copyright (c) 2015 Travis Barnes. All rights reserved.
@@ -102,10 +102,7 @@ bool input_validation(int in_base, int out_base, char* in_number, char* possible
     for (int q = 0; q < strlen(in_number); q++) {
         for (int i = 0; i < in_base; i++) {
             if (in_number[q] == possible_characters[i]) {
-                return true;
-            } else {
-                continue;
-            }
+                return true;            }
         }
     }
     return false;
