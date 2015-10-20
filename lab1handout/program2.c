@@ -28,8 +28,8 @@
 #define FILE_NAME "array.dat" //must include quotes
 
 
-void iterative_binary(int, int, int *);
-//void recursive_binary(int, int, int *);
+void iterative_binary(int, int, int, int *);
+void recursive_binary(int, int, int, int *);
 int main(void) {
     
     FILE *in_file;
@@ -38,6 +38,7 @@ int main(void) {
     int size;
     int value;
     char in_file_name[] = FILE_NAME;
+    
     
     if (in_file == NULL) {
         printf("Error Reading File\n");
@@ -49,22 +50,23 @@ int main(void) {
     }
     
     size = array[-1];
+    int max = size;
+    int min = array[0];
     
     printf("Please enter the number you would like to search for: ");
     scanf("%d", &value);
     
-    iterative_binary(size, value, array);
+    
+    iterative_binary(max, min, value, array);
+    recursive_binary(max, min, value, array);
     
     return 0;
 }
 
 
-void iterative_binary(int size, int value, int * array) {
-    int max = size;
-    int min = array[0];
+void iterative_binary(int max, int min, int value, int * array) {
     int delta;
     clock_t t1, t2;
-
     t1 = clock();
     
     while (min <= max) {
@@ -73,7 +75,7 @@ void iterative_binary(int size, int value, int * array) {
         if (array[mid] == value) {
             t2 = clock();
             delta = t2 - t1;
-            printf("The number you are searching for has been found at index: %d\n", mid);
+            printf("Your number was last seen at index: %d\n", mid);
             printf("It took %Lfms to find your number.", (long double) delta);
             exit(0);
             
@@ -87,59 +89,25 @@ void iterative_binary(int size, int value, int * array) {
     printf("Your number could not be found.");
 }
 
-//void recursive_binary(int size, int value, int * array) {
-//    int max = size;
-//    int min = array[1];
-//    int delta;
-//    clock_t t1, t2;
-//    
-//    t1 = clock();
-//    
-//    if (max < min) {
-//        printf("Your number could not be found.");
-//    } else {
-//        mid = (max+min)/2;
-//        
-//        if (array[mid] > value) {
-//            recursive_binary(<#int size#>, <#int value#>, <#int *array#>)
-//        }
-//    }
-//}
+void recursive_binary(int max, int min, int value, int * array) {
+    int delta;
+    clock_t t1, t2;
+    t1 = clock();
+    
+    if (max < min) {
+        printf("Your number could not be found.");
+    } else {
+        int mid = (max+min)/2;
 
-
-//////////// RECURSIVE /////////////
-//int binary_search(int A[], int key, int imin, int imax)
-//{
-//    // test if array is empty
-//    if (imax < imin)
-//        // set is empty, so return value showing not found
-//        return KEY_NOT_FOUND;
-//    else
-//    {
-//        // calculate midpoint to cut set in half
-//        int imid = midpoint(imin, imax);
-//        
-//        // three-way comparison
-//        if (A[imid] > key)
-//            // key is in lower subset
-//            return binary_search(A, key, imin, imid - 1);
-//        else if (A[imid] < key)
-//            // key is in upper subset
-//            return binary_search(A, key, imid + 1, imax);
-//        else
-//            // key has been found
-//            return imid;
-//    }
-//}
-//////////////////////////////
-
-
-
-////////// TIMING //////////
-//int delta;
-//clock_t t1, t2;
-//t1 = clock();
-//// CODE HERE
-//t2 = clock();
-//delta = t2 - t1;
-////////////////////////////
+        if (array[mid] > value) {
+            recursive_binary(mid-1, min, value, array);
+        } else if (array[mid] < value) {
+            recursive_binary(max, mid+1, value, array);
+        } else {
+            t2 = clock();
+            delta = t2 - t1;
+            printf("Your number was last seen at index: %d\n", mid);
+            printf("It took %Lfms to find your number.", (long double) delta);
+        }
+    }
+}
